@@ -183,7 +183,7 @@ window.location.assign('http://petewarrior.com/filmhoror/filmhoror.php?access_to
 <head>
 <title>Generator Judul Film Horor</title>
 
-
+<link rel="canonical" href="https://petewarrior.com/filmhoror/" />
 <meta property="fb:admins" content="petewarrior"/>
 <meta property="fb:app_id" content="476721465680950"/>
   <meta property="og:title"  content="<?php echo $res; ?>" /> 

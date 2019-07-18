@@ -1,5 +1,5 @@
 <?php 
-
+header('Location:filmhoror.php', '', 302);
 $host = "";
 if(!empty($_SERVER['HTTPS'])) {
     $host = "https://";
@@ -58,6 +58,6 @@ if($_REQUEST['code']) {
     </head>
 <script type="text/javascript">
 	//alert('<?=print_r($_REQUEST['code']) ?>');
-    // window.location.assign('<?php echo $loginUrl; ?>');
+    window.location.assign('<?php echo $loginUrl; ?>');
 </script>
 </html>
