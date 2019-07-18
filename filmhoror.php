@@ -28,14 +28,14 @@ if ($user) {
     }
 }
 
-$iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CBC);
+// $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CBC);
 
 $key = "bangketikus";
 $iv = "";
 
-for($i = 0; $i < $iv_size; $i++) {
-    $iv .= $i % 10;
-}
+// for($i = 0; $i < $iv_size; $i++) {
+//     $iv .= $i % 10;
+// }
 
 ?>
 
@@ -136,7 +136,8 @@ if(!$_GET['result']) {
         $res .= ${$a}[$rand] . " ";
     }
     //$hash = $resId;
-    $hash = rawurlencode(base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $key, $resId, MCRYPT_MODE_CBC, $iv)));
+    // $hash = rawurlencode(base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $key, $resId, MCRYPT_MODE_CBC, $iv)));
+    $hash = rawurlencode(base64_encode(openssl_encrypt($resId, 'blowfish', $key)));
     
 ?>
 <script type="text/javascript">
@@ -145,7 +146,8 @@ window.location.assign('http://petewarrior.com/filmhoror/filmhoror.php?access_to
 <?php
 } else {
     $hash = base64_decode(rawurldecode($_GET['result']));
-    $result = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $hash, MCRYPT_MODE_CBC, $iv);
+    // $result = mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $hash, MCRYPT_MODE_CBC, $iv);
+    $result = openssl_decrypt($hash, 'blowfish', $key);
     $r = explode("|", $result);
     
     //print_r($r);
